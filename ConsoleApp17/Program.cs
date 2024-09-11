@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp17
 {
@@ -26,13 +22,15 @@ namespace ConsoleApp17
 
         public static IDandNAME Read(int ID)
         {
-            return items[ID];           
+            return items.Find(value => value.ID == ID);           
         }
 
         public static void Update(int ID, string updatedName)
         {
-            var IDandNAME = items[ID];
-            if(IDandNAME == null)
+
+            IDandNAME IDandNAME = items.Find(value => value.ID == ID);
+
+            if (IDandNAME == null)
             {
                 Console.WriteLine("Not found");
             }
@@ -45,10 +43,8 @@ namespace ConsoleApp17
 
         public static void Delete(int ID)
         {
-            var IDandNAME = items[ID];
-            if(IDandNAME != null)
+            if(items.Remove(items.Find(value => value.ID == ID)))
             {
-                items.Remove(IDandNAME);
                 Console.WriteLine("Deleted");
             }
             else
